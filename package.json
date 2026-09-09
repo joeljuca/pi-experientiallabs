@@ -32,8 +32,12 @@
   "peerDependencies": {
     "@earendil-works/pi-coding-agent": "*"
   },
+  "dependencies": {
+    "debug": "^4.4.3"
+  },
   "devDependencies": {
     "@earendil-works/pi-coding-agent": "latest",
+    "@types/debug": "^4.1.13",
     "typescript": "5.9.3"
   }
 }
