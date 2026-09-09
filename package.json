@@ -4,7 +4,7 @@
   "description": "pi extension for Experiential Labs",
   "type": "module",
   "author": "Joel Jucá <joeljuca@proton.me> (https://joeljuca.com)",
-  "repository": "joeljuca/pi-experientiallabs",
+  "homepage": "https://github.com/joeljuca/pi-experientiallabs",
   "bugs": "https://github.com/joeljuca/pi-experientiallabs/issues",
   "license": "Apache-2.0",
   "keywords": [
