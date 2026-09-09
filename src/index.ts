@@ -13,8 +13,7 @@ import Debug from "debug";
 const debug = Debug("explabs");
 
 /** Supported API formats for Experiential Labs */
-type ApiFormat =
-  "openai-completions" | "openai-responses" | "anthropic-messages";
+type ApiFormat = "openai-completions" | "openai-responses" | "anthropic-messages";
 
 /** Allowed values for API format */
 const API_FORMATS: readonly ApiFormat[] = [
@@ -50,9 +49,7 @@ interface ModelsResponse {
 }
 
 /** Default configuration */
-const DEFAULT_CONFIG: Required<
-  Omit<ExperientialLabsConfig, "apiFormat" | "baseUrl">
-> = {
+const DEFAULT_CONFIG: Required<Omit<ExperientialLabsConfig, "apiFormat" | "baseUrl">> = {
   apiKeyEnv: "EXPLABS_API_KEY",
 };
 
@@ -65,9 +62,7 @@ function resolveApiFormat(config?: ApiFormat): ApiFormat {
   // Config takes precedence
   if (config) {
     if (!API_FORMATS.includes(config)) {
-      throw new Error(
-        `Invalid apiFormat: "${config}". Must be one of: ${API_FORMATS.join(", ")}`,
-      );
+      throw new Error(`Invalid apiFormat: "${config}". Must be one of: ${API_FORMATS.join(", ")}`);
     }
     return config;
   }
@@ -106,17 +101,11 @@ function resolveApiFormat(config?: ApiFormat): ApiFormat {
  * ```
  */
 export function createExplabsExtension(config?: ExperientialLabsConfig) {
-  const baseUrl =
-    config?.baseUrl ?? process.env.EXPLABS_BASE_URL ?? DEFAULT_BASE_URL;
+  const baseUrl = config?.baseUrl ?? process.env.EXPLABS_BASE_URL ?? DEFAULT_BASE_URL;
   const apiKeyEnv = config?.apiKeyEnv ?? DEFAULT_CONFIG.apiKeyEnv;
   const apiFormat = resolveApiFormat(config?.apiFormat);
 
-  debug(
-    "config: baseUrl=%s apiKeyEnv=%s apiFormat=%s",
-    baseUrl,
-    apiKeyEnv,
-    apiFormat,
-  );
+  debug("config: baseUrl=%s apiKeyEnv=%s apiFormat=%s", baseUrl, apiKeyEnv, apiFormat);
 
   return function explabsExtension(pi: ExtensionAPI): void {
     // Intercept /login explabs and show a notification
@@ -167,9 +156,7 @@ export function createExplabsExtension(config?: ExperientialLabsConfig) {
 
         if (!Array.isArray(payload.data)) {
           debug("invalid payload: %o", payload);
-          throw new Error(
-            "Invalid response format: expected 'data' to be an array",
-          );
+          throw new Error("Invalid response format: expected 'data' to be an array");
         }
 
         return payload.data.map((model) => ({

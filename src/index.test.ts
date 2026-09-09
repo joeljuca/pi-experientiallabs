@@ -135,9 +135,7 @@ describe("createExplabsExtension", () => {
     it("config param overrides baseUrl env var", () => {
       process.env.EXPLABS_BASE_URL = "https://env.example.com/v1";
       const pi = mockPi();
-      createExplabsExtension({ baseUrl: "https://config.example.com/v1" })(
-        pi as never,
-      );
+      createExplabsExtension({ baseUrl: "https://config.example.com/v1" })(pi as never);
 
       expect(pi.registerProvider).toHaveBeenCalledWith(
         "explabs",
@@ -171,16 +169,14 @@ describe("createExplabsExtension", () => {
 
     it("throws on invalid apiFormat in config", () => {
       // @ts-expect-error – testing invalid value at runtime
-      expect(() =>
-        createExplabsExtension({ apiFormat: "bogus-format" }),
-      ).toThrow(/Invalid apiFormat/);
+      expect(() => createExplabsExtension({ apiFormat: "bogus-format" })).toThrow(
+        /Invalid apiFormat/,
+      );
     });
 
     it("throws on invalid EXPLABS_API_FORMAT env var", () => {
       process.env.EXPLABS_API_FORMAT = "bogus-format";
-      expect(() => createExplabsExtension()).toThrow(
-        /Invalid EXPLABS_API_FORMAT/,
-      );
+      expect(() => createExplabsExtension()).toThrow(/Invalid EXPLABS_API_FORMAT/);
     });
   });
 });
@@ -194,10 +190,7 @@ describe("extension function", () => {
     const pi = mockPi();
     createExplabsExtension()(pi as never);
 
-    expect(pi.registerProvider).toHaveBeenCalledWith(
-      "explabs",
-      expect.any(Object),
-    );
+    expect(pi.registerProvider).toHaveBeenCalledWith("explabs", expect.any(Object));
   });
 
   it("registers an input listener", () => {
@@ -217,10 +210,7 @@ describe("extension function", () => {
       const result = await handler!({ text: "/login explabs" }, ctx);
 
       expect(result).toEqual({ action: "handled" });
-      expect(ctx.ui.notify).toHaveBeenCalledWith(
-        expect.stringContaining("API key"),
-        "info",
-      );
+      expect(ctx.ui.notify).toHaveBeenCalledWith(expect.stringContaining("API key"), "info");
     });
 
     it("returns { action: 'continue' } for other inputs", async () => {
@@ -286,18 +276,13 @@ describe("refreshModels", () => {
 
     await provider.refreshModels({ signal });
 
-    expect(fetch).toHaveBeenCalledWith(
-      expect.any(String),
-      expect.objectContaining({ signal }),
-    );
+    expect(fetch).toHaveBeenCalledWith(expect.any(String), expect.objectContaining({ signal }));
   });
 
   it("maps models from the response", async () => {
     fetch.mockResolvedValue(
       mockResponse({
-        data: [
-          { id: "aion-2.0", object: "model", created: 0, owned_by: "exp" },
-        ],
+        data: [{ id: "aion-2.0", object: "model", created: 0, owned_by: "exp" }],
       }),
     );
 
@@ -381,16 +366,16 @@ describe("refreshModels", () => {
       ),
     );
 
-    await expect(
-      provider.refreshModels({ signal: new AbortController().signal }),
-    ).rejects.toThrow(/Failed to fetch Experiential Labs models/);
+    await expect(provider.refreshModels({ signal: new AbortController().signal })).rejects.toThrow(
+      /Failed to fetch Experiential Labs models/,
+    );
   });
 
   it("throws when response body lacks data array", async () => {
     fetch.mockResolvedValue(mockResponse({ error: "not found" }));
 
-    await expect(
-      provider.refreshModels({ signal: new AbortController().signal }),
-    ).rejects.toThrow(/Invalid response format/);
+    await expect(provider.refreshModels({ signal: new AbortController().signal })).rejects.toThrow(
+      /Invalid response format/,
+    );
   });
 });
