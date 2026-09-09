@@ -13,7 +13,9 @@
     "pi-extension",
     "experientiallabs"
   ],
-  "engines": { "node": ">=22.19.0" },
+  "engines": {
+    "node": ">=22.19.0"
+  },
   "files": [
     "README.md",
     "CHANGELOG.md",
@@ -22,7 +24,11 @@
   ],
   "main": "./dist/index.js",
   "types": "./dist/index.d.ts",
-  "pi": { "extensions": ["./dist/index.js"] },
+  "pi": {
+    "extensions": [
+      "./dist/index.js"
+    ]
+  },
   "scripts": {
     "build": "tsc",
     "dev": "tsc --watch",
@@ -38,6 +44,7 @@
   "devDependencies": {
     "@earendil-works/pi-coding-agent": "latest",
     "@types/debug": "^4.1.13",
+    "prettier": "^3.9.6",
     "typescript": "5.9.3"
   }
 }
