@@ -8,6 +8,9 @@
  */
 
 import type { ExtensionAPI } from "@earendil-works/pi-coding-agent";
+import Debug from "debug";
+
+const debug = Debug("pi-experientiallabs");
 
 /** Supported API formats for Experiential Labs */
 type ApiFormat = "openai-completions" | "openai-responses" | "anthropic-messages";
@@ -104,33 +107,43 @@ export function createExplabsExtension(config?: ExperientialLabsConfig) {
   const apiKeyEnv = config?.apiKeyEnv ?? DEFAULT_CONFIG.apiKeyEnv;
   const apiFormat = resolveApiFormat(config?.apiFormat);
 
+  debug("config: baseUrl=%s apiKeyEnv=%s apiFormat=%s", baseUrl, apiKeyEnv, apiFormat);
+
   return function explabsExtension(pi: ExtensionAPI): void {
     pi.registerProvider("experientiallabs", {
       name: "Experiential Labs",
       baseUrl,
-      apiKey: `$${apiKeyEnv}`,
+      apiKey: process.env[apiKeyEnv] ?? "",
+      authHeader: true,
       api: apiFormat,
 
       async refreshModels({ signal }: { signal: AbortSignal }) {
         const modelsUrl = `${baseUrl}/models`;
+        debug("fetching models from %s", modelsUrl);
 
         const response = await fetch(modelsUrl, {
           signal,
           headers: {
             "Accept": "application/json",
+            "Authorization": `Bearer ${process.env[apiKeyEnv] ?? ""}`,
           },
         });
 
+        debug("response status: %d", response.status);
+
         if (!response.ok) {
           const errorText = await response.text().catch(() => "Unknown error");
+          debug("error: %s", errorText);
           throw new Error(
             `Failed to fetch Experiential Labs models: ${response.status} ${response.statusText}\n${errorText}`
           );
         }
 
         const payload = (await response.json()) as ModelsResponse;
+        debug("received %d models", payload.data?.length ?? 0);
 
         if (!Array.isArray(payload.data)) {
+          debug("invalid payload: %o", payload);
           throw new Error(
             "Invalid response format: expected 'data' to be an array"
           );
