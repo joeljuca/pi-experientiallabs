@@ -8,6 +8,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## [Unreleased]
 
 ### Added
+
 - Initial project setup
 - Dynamic model discovery from Experiential Labs API
 - Configuration options for custom base URL and API key env var
@@ -15,23 +16,29 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - npm package configuration
 
 ### Changed
+
 - N/A
 
 ### Deprecated
+
 - N/A
 
 ### Removed
+
 - N/A
 
 ### Fixed
+
 - N/A
 
 ### Security
+
 - N/A
 
 ## [0.1.0] - 2024-XX-XX
 
 ### Added
+
 - Initial release
 - Dynamic model discovery
 - OpenAI-compatible API support

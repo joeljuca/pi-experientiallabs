@@ -13,7 +13,8 @@ import Debug from "debug";
 const debug = Debug("pi-experientiallabs");
 
 /** Supported API formats for Experiential Labs */
-type ApiFormat = "openai-completions" | "openai-responses" | "anthropic-messages";
+type ApiFormat =
+  "openai-completions" | "openai-responses" | "anthropic-messages";
 
 /** Allowed values for API format */
 const API_FORMATS: readonly ApiFormat[] = [
@@ -49,7 +50,9 @@ interface ModelsResponse {
 }
 
 /** Default configuration */
-const DEFAULT_CONFIG: Required<Omit<ExperientialLabsConfig, "apiFormat" | "baseUrl">> = {
+const DEFAULT_CONFIG: Required<
+  Omit<ExperientialLabsConfig, "apiFormat" | "baseUrl">
+> = {
   apiKeyEnv: "EXPLABS_API_KEY",
 };
 
@@ -63,7 +66,7 @@ function resolveApiFormat(config?: ApiFormat): ApiFormat {
   if (config) {
     if (!API_FORMATS.includes(config)) {
       throw new Error(
-        `Invalid apiFormat: "${config}". Must be one of: ${API_FORMATS.join(", ")}`
+        `Invalid apiFormat: "${config}". Must be one of: ${API_FORMATS.join(", ")}`,
       );
     }
     return config;
@@ -75,7 +78,7 @@ function resolveApiFormat(config?: ApiFormat): ApiFormat {
   if (envValue) {
     if (!API_FORMATS.includes(envValue as ApiFormat)) {
       throw new Error(
-        `Invalid EXPLABS_API_FORMAT: "${envValue}". Must be one of: ${API_FORMATS.join(", ")}`
+        `Invalid EXPLABS_API_FORMAT: "${envValue}". Must be one of: ${API_FORMATS.join(", ")}`,
       );
     }
     return envValue as ApiFormat;
@@ -103,11 +106,17 @@ function resolveApiFormat(config?: ApiFormat): ApiFormat {
  * ```
  */
 export function createExplabsExtension(config?: ExperientialLabsConfig) {
-  const baseUrl = config?.baseUrl ?? process.env.EXPLABS_BASE_URL ?? DEFAULT_BASE_URL;
+  const baseUrl =
+    config?.baseUrl ?? process.env.EXPLABS_BASE_URL ?? DEFAULT_BASE_URL;
   const apiKeyEnv = config?.apiKeyEnv ?? DEFAULT_CONFIG.apiKeyEnv;
   const apiFormat = resolveApiFormat(config?.apiFormat);
 
-  debug("config: baseUrl=%s apiKeyEnv=%s apiFormat=%s", baseUrl, apiKeyEnv, apiFormat);
+  debug(
+    "config: baseUrl=%s apiKeyEnv=%s apiFormat=%s",
+    baseUrl,
+    apiKeyEnv,
+    apiFormat,
+  );
 
   return function explabsExtension(pi: ExtensionAPI): void {
     pi.registerProvider("experientiallabs", {
@@ -124,8 +133,8 @@ export function createExplabsExtension(config?: ExperientialLabsConfig) {
         const response = await fetch(modelsUrl, {
           signal,
           headers: {
-            "Accept": "application/json",
-            "Authorization": `Bearer ${process.env[apiKeyEnv] ?? ""}`,
+            Accept: "application/json",
+            Authorization: `Bearer ${process.env[apiKeyEnv] ?? ""}`,
           },
         });
 
@@ -135,7 +144,7 @@ export function createExplabsExtension(config?: ExperientialLabsConfig) {
           const errorText = await response.text().catch(() => "Unknown error");
           debug("error: %s", errorText);
           throw new Error(
-            `Failed to fetch Experiential Labs models: ${response.status} ${response.statusText}\n${errorText}`
+            `Failed to fetch Experiential Labs models: ${response.status} ${response.statusText}\n${errorText}`,
           );
         }
 
@@ -145,7 +154,7 @@ export function createExplabsExtension(config?: ExperientialLabsConfig) {
         if (!Array.isArray(payload.data)) {
           debug("invalid payload: %o", payload);
           throw new Error(
-            "Invalid response format: expected 'data' to be an array"
+            "Invalid response format: expected 'data' to be an array",
           );
         }
 
