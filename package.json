@@ -1,0 +1,39 @@
+{
+  "name": "@joeljuca/pi-experientiallabs",
+  "version": "0.1.0",
+  "description": "pi extension for Experiential Labs",
+  "type": "module",
+  "author": "Joel Jucá <joeljuca@proton.me> (https://joeljuca.com)",
+  "repository": "joeljuca/pi-experientiallabs",
+  "bugs": "https://github.com/joeljuca/pi-experientiallabs/issues",
+  "license": "Apache-2.0",
+  "keywords": [
+    "pi",
+    "pi-package",
+    "pi-extension",
+    "experientiallabs"
+  ],
+  "engines": { "node": ">=22.19.0" },
+  "files": [
+    "README.md",
+    "CHANGELOG.md",
+    "LICENSE",
+    "dist"
+  ],
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "pi": { "extensions": ["./dist/index.js"] },
+  "scripts": {
+    "build": "tsc",
+    "dev": "tsc --watch",
+    "prepublishOnly": "npm run build",
+    "typecheck": "tsc --noEmit"
+  },
+  "peerDependencies": {
+    "@earendil-works/pi-coding-agent": "*"
+  },
+  "devDependencies": {
+    "@earendil-works/pi-coding-agent": "latest",
+    "typescript": "5.9.3"
+  }
+}
