@@ -6,7 +6,7 @@
 [![Codeberg](https://img.shields.io/badge/joeljuca/pi--explabs-blue?logo=codeberg&logoColor=white)](https://codeberg.org/joeljuca/pi-explabs)
 [![Author](https://img.shields.io/badge/joeljuca.com-white?logo=google-chrome)](https://joeljuca.com)
 
-[Experiential Labs](https://experientiallabs.ai) provider extension for the [pi coding agent](https://github.com/earendil-works/pi-coding-agent), featuring **dynamic model discovery** — models are fetched from the Experiential Labs API whenever pi refreshes the model list.
+[Experiential Labs](https://experientiallabs.ai) provider extension for the [pi coding agent](https://pi.dev), featuring **dynamic model discovery** — models are fetched from the Experiential Labs API whenever pi refreshes the model list.
 
 ## Features
 
