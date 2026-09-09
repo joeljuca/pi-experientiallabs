@@ -1,17 +1,19 @@
 {
-  "name": "@joeljuca/pi-experientiallabs",
+  "name": "@joeljuca/pi-explabs",
   "version": "0.1.0",
   "description": "pi extension for Experiential Labs",
   "type": "module",
   "author": "Joel Jucá <joeljuca@proton.me> (https://joeljuca.com)",
-  "homepage": "https://github.com/joeljuca/pi-experientiallabs",
-  "bugs": "https://github.com/joeljuca/pi-experientiallabs/issues",
+  "repository": "joeljuca/pi-explabs",
+  "homepage": "https://github.com/joeljuca/pi-explabs",
+  "bugs": "https://github.com/joeljuca/pi-explabs/issues",
   "license": "Apache-2.0",
   "keywords": [
     "pi",
     "pi-package",
     "pi-extension",
-    "experientiallabs"
+    "experientiallabs",
+    "explabs"
   ],
   "engines": {
     "node": ">=22.19.0"

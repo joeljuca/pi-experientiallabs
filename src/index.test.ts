@@ -85,7 +85,7 @@ describe("createExplabsExtension", () => {
       createExplabsExtension()(pi as never);
 
       expect(pi.registerProvider).toHaveBeenCalledWith(
-        "experientiallabs",
+        "explabs",
         expect.objectContaining({
           baseUrl: DEFAULT_BASE_URL,
           apiKey: "",
@@ -101,7 +101,7 @@ describe("createExplabsExtension", () => {
       createExplabsExtension()(pi as never);
 
       expect(pi.registerProvider).toHaveBeenCalledWith(
-        "experientiallabs",
+        "explabs",
         expect.objectContaining({
           apiKey: "xpl_abc123def456abc123def456abc123def456",
         }),
@@ -114,7 +114,7 @@ describe("createExplabsExtension", () => {
       createExplabsExtension()(pi as never);
 
       expect(pi.registerProvider).toHaveBeenCalledWith(
-        "experientiallabs",
+        "explabs",
         expect.objectContaining({
           baseUrl: "https://selfhosted.example.com/v1",
         }),
@@ -127,7 +127,7 @@ describe("createExplabsExtension", () => {
       createExplabsExtension()(pi as never);
 
       expect(pi.registerProvider).toHaveBeenCalledWith(
-        "experientiallabs",
+        "explabs",
         expect.objectContaining({ api: "anthropic-messages" }),
       );
     });
@@ -140,7 +140,7 @@ describe("createExplabsExtension", () => {
       );
 
       expect(pi.registerProvider).toHaveBeenCalledWith(
-        "experientiallabs",
+        "explabs",
         expect.objectContaining({
           baseUrl: "https://config.example.com/v1",
         }),
@@ -153,7 +153,7 @@ describe("createExplabsExtension", () => {
       createExplabsExtension({ apiFormat: "anthropic-messages" })(pi as never);
 
       expect(pi.registerProvider).toHaveBeenCalledWith(
-        "experientiallabs",
+        "explabs",
         expect.objectContaining({ api: "anthropic-messages" }),
       );
     });
@@ -164,7 +164,7 @@ describe("createExplabsExtension", () => {
       createExplabsExtension({ apiKeyEnv: "MY_CUSTOM_KEY" })(pi as never);
 
       expect(pi.registerProvider).toHaveBeenCalledWith(
-        "experientiallabs",
+        "explabs",
         expect.objectContaining({ apiKey: "custom_key_value" }),
       );
     });
@@ -190,12 +190,12 @@ describe("createExplabsExtension", () => {
 // ===========================================================================
 
 describe("extension function", () => {
-  it("registers the provider with name 'experientiallabs'", () => {
+  it("registers the provider with name 'explabs'", () => {
     const pi = mockPi();
     createExplabsExtension()(pi as never);
 
     expect(pi.registerProvider).toHaveBeenCalledWith(
-      "experientiallabs",
+      "explabs",
       expect.any(Object),
     );
   });
@@ -207,14 +207,14 @@ describe("extension function", () => {
     expect(pi.on).toHaveBeenCalledWith("input", expect.any(Function));
   });
 
-  describe("/login experientiallabs interception", () => {
+  describe("/login explabs interception", () => {
     it("returns { action: 'handled' } and shows a notification", async () => {
       const pi = mockPi();
       createExplabsExtension()(pi as never);
 
       const handler = pi._handler("input");
       const ctx = mockCtx();
-      const result = await handler!({ text: "/login experientiallabs" }, ctx);
+      const result = await handler!({ text: "/login explabs" }, ctx);
 
       expect(result).toEqual({ action: "handled" });
       expect(ctx.ui.notify).toHaveBeenCalledWith(

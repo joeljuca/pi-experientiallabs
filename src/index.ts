@@ -10,7 +10,7 @@
 import type { ExtensionAPI } from "@earendil-works/pi-coding-agent";
 import Debug from "debug";
 
-const debug = Debug("pi-experientiallabs");
+const debug = Debug("explabs");
 
 /** Supported API formats for Experiential Labs */
 type ApiFormat =
@@ -96,7 +96,7 @@ function resolveApiFormat(config?: ApiFormat): ApiFormat {
  *
  * @example
  * ```typescript
- * import explabsProvider from "@joeljuca/pi-experientiallabs";
+ * import explabsProvider from "@joeljuca/pi-explabs";
  *
  * // Default: openai-completions
  * export default explabsProvider();
@@ -119,11 +119,11 @@ export function createExplabsExtension(config?: ExperientialLabsConfig) {
   );
 
   return function explabsExtension(pi: ExtensionAPI): void {
-    // Intercept /login experientiallabs and show a notification
+    // Intercept /login explabs and show a notification
     // instead of launching the default OAuth flow
     pi.on("input", async (event, ctx) => {
-      if (event.text === "/login experientiallabs") {
-        debug("/login experientiallabs intercepted, showing API key notice");
+      if (event.text === "/login explabs") {
+        debug("/login explabs intercepted, showing API key notice");
         ctx.ui.notify(
           "Authentication is API key-only. Set EXPLABS_API_KEY environment variable.",
           "info",
@@ -133,7 +133,7 @@ export function createExplabsExtension(config?: ExperientialLabsConfig) {
       return { action: "continue" };
     });
 
-    pi.registerProvider("experientiallabs", {
+    pi.registerProvider("explabs", {
       name: "Experiential Labs",
       baseUrl,
       apiKey: process.env[apiKeyEnv] ?? "",

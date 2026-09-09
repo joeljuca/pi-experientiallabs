@@ -1,4 +1,4 @@
-# Contributing to @joeljuca/pi-experientiallabs
+# Contributing to @joeljuca/pi-explabs
 
 Thank you for your interest in contributing! This document provides guidelines and instructions for contributing to this project.
 
@@ -10,7 +10,7 @@ Please be respectful and constructive in all interactions.
 
 ### Reporting Bugs
 
-1. Check [existing issues](https://github.com/joeljuca/pi-experientiallabs/issues) to avoid duplicates
+1. Check [existing issues](https://github.com/joeljuca/pi-explabs/issues) to avoid duplicates
 2. Open a new issue with:
    - Clear title and description
    - Steps to reproduce
@@ -19,7 +19,7 @@ Please be respectful and constructive in all interactions.
 
 ### Suggesting Features
 
-1. Check [existing issues](https://github.com/joeljuca/pi-experientiallabs/issues) for similar suggestions
+1. Check [existing issues](https://github.com/joeljuca/pi-explabs/issues) for similar suggestions
 2. Open a new issue with the `enhancement` label
 3. Describe the feature and its use case
 
@@ -44,8 +44,8 @@ Please be respectful and constructive in all interactions.
 
 ```bash
 # Clone your fork
-git clone https://github.com/your-username/pi-experientiallabs.git
-cd pi-experientiallabs
+git clone https://github.com/your-username/explabs.git
+cd explabs
 
 # Install dependencies
 npm install
@@ -60,7 +60,7 @@ npm run dev
 ### Project Structure
 
 ```
-pi-experientiallabs/
+explabs/
 ├── src/
 │   └── index.ts          # Extension source code
 ├── dist/                 # Compiled JavaScript (generated)
@@ -123,10 +123,10 @@ Refactor API response handling
 3. Test with pi:
    ```bash
    # Test without installing
-   pi -e npm:@joeljuca/pi-experientiallabs
+   pi -e npm:@joeljuca/pi-explabs
 
    # Or install and test
-   pi install npm:@joeljuca/pi-experientiallabs
+   pi install npm:@joeljuca/pi-explabs
    ```
 
 ### Type Checking

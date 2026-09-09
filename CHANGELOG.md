@@ -45,5 +45,5 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Environment variable configuration
 - Comprehensive documentation
 
-[Unreleased]: https://github.com/joeljuca/pi-experientiallabs/compare/v0.1.0...HEAD
-[0.1.0]: https://github.com/joeljuca/pi-experientiallabs/releases/tag/v0.1.0
+[Unreleased]: https://github.com/joeljuca/pi-explabs/compare/v0.1.0...HEAD
+[0.1.0]: https://github.com/joeljuca/pi-explabs/releases/tag/v0.1.0
