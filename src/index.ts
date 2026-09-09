@@ -10,7 +10,7 @@
 import type { ExtensionAPI } from "@earendil-works/pi-coding-agent";
 import Debug from "debug";
 
-const debug = Debug("explabs");
+const debug = Debug("pi-explabs");
 
 /** Supported API formats for Experiential Labs */
 type ApiFormat = "openai-completions" | "openai-responses" | "anthropic-messages";

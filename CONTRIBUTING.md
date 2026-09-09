@@ -36,7 +36,7 @@ Please be respectful and constructive in all interactions.
 
 ### Prerequisites
 
-- Node.js 18+
+- Node.js 22.19+
 - npm, pnpm, or yarn
 - Git
 
@@ -68,7 +68,7 @@ explabs/
 ├── tsconfig.json         # TypeScript configuration
 ├── README.md             # Documentation
 ├── CONTRIBUTING.md       # This file
-├── LICENSE               # MIT license
+├── LICENSE               # Apache-2.0 license
 └── .gitignore            # Git ignore rules
 ```
 
@@ -128,6 +128,18 @@ Refactor API response handling
    # Or install and test
    pi install npm:@joeljuca/pi-explabs
    ```
+
+### Debug Logging
+
+This project uses the [`debug`](https://npm.im/debug) module for optional
+logging. Enable it by setting the `DEBUG` environment variable:
+
+```bash
+DEBUG=pi-explabs pi
+```
+
+The namespace is `pi-explabs`. You'll see logs for config resolution, model
+fetching, response status, and the `/login explabs` intercept.
 
 ### Type Checking
 
