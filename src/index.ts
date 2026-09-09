@@ -119,6 +119,20 @@ export function createExplabsExtension(config?: ExperientialLabsConfig) {
   );
 
   return function explabsExtension(pi: ExtensionAPI): void {
+    // Intercept /login experientiallabs and show a notification
+    // instead of launching the default OAuth flow
+    pi.on("input", async (event, ctx) => {
+      if (event.text === "/login experientiallabs") {
+        debug("/login experientiallabs intercepted, showing API key notice");
+        ctx.ui.notify(
+          "Authentication is API key-only. Set EXPLABS_API_KEY environment variable.",
+          "info",
+        );
+        return { action: "handled" };
+      }
+      return { action: "continue" };
+    });
+
     pi.registerProvider("experientiallabs", {
       name: "Experiential Labs",
       baseUrl,
