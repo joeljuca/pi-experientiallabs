@@ -30,8 +30,8 @@
     ]
   },
   "scripts": {
-    "prettier:check": "prettier -c ./**/*.md ./**/*.js ./**/*.ts",
-    "prettier:fix": "prettier -w ./**/*.md ./**/*.js ./**/*.ts",
+    "prettier:check": "prettier -c ./**/*.md ./**/*.ts",
+    "prettier:fix": "prettier -w ./**/*.md ./**/*.ts",
     "build": "tsc",
     "dev": "tsc --watch",
     "prepublishOnly": "npm run build",
