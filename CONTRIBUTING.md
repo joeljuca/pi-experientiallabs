@@ -50,11 +50,8 @@ cd explabs
 # Install dependencies
 npm install
 
-# Build the project
-npm run build
-
-# Watch mode (for development)
-npm run dev
+# Type check
+npm run typecheck
 ```
 
 ### Project Structure
@@ -63,7 +60,6 @@ npm run dev
 explabs/
 ├── src/
 │   └── index.ts          # Extension source code
-├── dist/                 # Compiled JavaScript (generated)
 ├── package.json          # npm package configuration
 ├── tsconfig.json         # TypeScript configuration
 ├── README.md             # Documentation
@@ -75,10 +71,10 @@ explabs/
 ### Available Scripts
 
 ```bash
-npm run build       # Build the project
-npm run dev         # Watch mode for development
 npm run typecheck   # Run TypeScript type checking
-npm run prepublish  # Build before publishing (runs automatically)
+npm run prettier:check  # Check formatting
+npm run prettier:fix    # Fix formatting
+npm test                # Run tests
 ```
 
 ## Coding Guidelines
@@ -118,7 +114,7 @@ Refactor API response handling
 
 ### Manual Testing
 
-1. Build the project: `npm run build`
+1. Type check: `npm run typecheck`
 2. Link locally: `npm link`
 3. Test with pi:
    ```bash

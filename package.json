@@ -22,24 +22,22 @@
     "README.md",
     "CHANGELOG.md",
     "LICENSE",
-    "dist"
+    "src",
+    "!src/**/*.test.ts"
   ],
-  "main": "./dist/index.js",
-  "types": "./dist/index.d.ts",
+  "main": "./src/index.ts",
+  "types": "./src/index.ts",
   "publishConfig": {
     "access": "public"
   },
   "pi": {
     "extensions": [
-      "./dist/index.js"
+      "./src/index.ts"
     ]
   },
   "scripts": {
     "prettier:check": "prettier -c ./**/*.md ./**/*.ts",
     "prettier:fix": "prettier -w ./**/*.md ./**/*.ts",
-    "build": "tsc",
-    "dev": "tsc --watch",
-    "prepublishOnly": "npm run build",
     "test": "vitest run",
     "test:watch": "vitest",
     "typecheck": "tsc --noEmit"
